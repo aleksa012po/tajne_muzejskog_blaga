@@ -1,0 +1,22 @@
+{
+  "@@locale": "en",
+  "choose_language": "Choose your language",
+  "continue": "Continue",
+  "secrets_of_museum_treasures": "Secrets of museum treasures",
+  "welcome_text": "Welcome to the Secrets of Museum Treasures app!\n\nOur mission is to inspire and educate people of all ages about the rich cultural heritage of the Republic of Serbia through an interactive experience provided by the \"Secrets of Museum Treasures\" app. Through quizzes, puzzles, and coloring activities, we aim to enable users to explore and develop an appreciation for the treasures held within our country.\n\nWe strive to provide an educational experience that users will remember and to enrich education through entertainment. Our quiz is tailored to school curricula to help students better understand and retain information from various subjects. Through interactive questions, we encourage learning through play. Our goal is to foster curiosity and a desire to learn among young generations.\n\nOur app seeks to inspire young generations to develop an interest in cultural heritage, history, art, and music. Through stories and information, we aim to awaken curiosity and a passion for learning.\n\nWe are aware of the importance of collaboration with educational institutions. The \"Secrets of Museum Treasures\" app can be a valuable tool for teachers to enrich their lessons and motivate students to explore cultural heritage.\n\nThis app provides an opportunity for a socially interactive experience. Users can share their achievements, puzzle solutions, and coloring creations with friends and family, strengthening their bonds.\n\nWe thank the Ministry of Culture and Information of the Republic of Serbia for their support of our project. Their support has enabled us to develop this app and provide a high-quality educational experience for children and youth, as well as to continuously improve the app and deliver the highest-quality content to users.\n\nOur desire is for \"Secrets of Museum Treasures\" to become a means to preserve and promote our cultural heritage, inspire youth to take an interest in art and history, and contribute to enriching the cultural identity of the Republic of Serbia.\n\n\"IGNITE YOUR MIND\"\n\nThank you for being a part of this adventure and supporting our mission!\n\nProject Manager:\n\nJelena Milenković,\nSenior Museum Educator.",
+  "choose_a_game": "CHOOSE A GAME",
+  "quiz": "Quiz",
+  "slide_puzzle": "Slide Puzzle",
+  "happy_color": "Happy Color",
+  "previous": "Previous",
+  "next": "Next",
+  "get_started": "Get started",
+  "puzzle_title": "Puzzle",
+  "puzzle_description": "Every piece is a key!",
+  "quiz_title": "Quiz",
+  "quiz_description": "Challenge the answers, unlock the knowledge.",
+  "color_title": "Happy Color",
+  "color_description": "Express yourself through colors.",
+  "game_title": "Game",
+  "game_description": "Secrets revealed through play."
+}

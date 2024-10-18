@@ -1,0 +1,22 @@
+{
+  "@@locale": "sr_Latn",
+  "choose_language": "Izaberite vaš jezik",
+  "continue": "Nastavi",
+  "secrets_of_museum_treasures": "Tajne muzejskih blaga",
+  "welcome_text": "Dobrodošli u aplikaciju Tajne muzejskih blaga!\n\nNaša misija je da inspirišemo i obrazujemo ljude svih uzrasta o bogatoj kulturnoj baštini Republike Srbije kroz interaktivno iskustvo koje pruža aplikacija \"Tajne muzejskih blaga\". Kroz kvizove, slagalice i bojenje, nastojimo da omogućimo korisnicima da istražuju i razvijaju osećaj za blaga koja se čuvaju u našoj zemlji.\n\nTežimo da pružimo obrazovno iskustvo koje će korisnici zapamtiti i da obogatimo obrazovanje kroz zabavu. Naš kviz je prilagođen školskim programima kako bi pomogao učenicima da bolje razumeju i zadrže informacije iz različitih predmeta. Kroz interaktivna pitanja, podstičemo učenje kroz igru. Naš cilj je da podstaknemo radoznalost i želju za učenjem među mladim generacijama.\n\nNaša aplikacija teži da inspirira mlade generacije da razviju interesovanje za kulturnu baštinu, istoriju, umetnost i muziku. Kroz priče i informacije, nastojimo da probudimo radoznalost i strast za učenjem.\n\nSvesni smo važnosti saradnje sa obrazovnim ustanovama. Aplikacija \"Tajne muzejskih blaga\" može biti vredno sredstvo za nastavnike da obogate svoje časove i motivišu učenike da istražuju kulturnu baštinu.\n\nOva aplikacija pruža mogućnost za društveno interaktivno iskustvo. Korisnici mogu da dele svoja dostignuća, rešenja slagalica i kreacije bojenja sa prijateljima i porodicom, jačajući svoje veze.\n\nZahvaljujemo se Ministarstvu kulture i informisanja Republike Srbije za podršku našem projektu. Njihova podrška nam je omogućila da razvijemo ovu aplikaciju i da pružimo kvalitetno obrazovno iskustvo za decu i mlade, kao i da kontinuirano unapređujemo aplikaciju i isporučujemo najkvalitetniji sadržaj korisnicima.\n\nNaša želja je da \"Tajne muzejskih blaga\" postanu sredstvo za očuvanje i promociju naše kulturne baštine, da inspiriraju mlade da se interesuju za umetnost i istoriju i da doprinesu obogaćivanju kulturnog identiteta Republike Srbije.\n\n\"RAZGORI SVOJ UM\"\n\nHvala što ste deo ove avanture i što podržavate našu misiju!\n\nProjekt menadžer:\n\nJelena Milenković,\nSenior muzejski edukator.",
+  "choose_a_game": "IZABERITE IGRU",
+  "quiz": "Kviz",
+  "slide_puzzle": "Slagalica",
+  "happy_color": "Srećna boja",
+  "previous": "Prethodno",
+  "next": "Sledeće",
+  "get_started": "Počni",
+  "puzzle_title": "Slagalica",
+  "puzzle_description": "Svaki deo je ključ!",
+  "quiz_title": "Kviz",
+  "quiz_description": "Izazovite odgovore, otključajte znanje.",
+  "color_title": "Srećna boja",
+  "color_description": "Izrazite se kroz boje.",
+  "game_title": "Igra",
+  "game_description": "Tajne otkrivene kroz igru."
+}
