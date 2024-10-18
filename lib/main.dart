@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'l10n.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale _locale = Locale('en');
+
+  void setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,12 +29,24 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(),
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: L10n.all,
+      locale: _locale,
+      home: SplashScreen(setLocale: setLocale),
     );
   }
 }
 
 class SplashScreen extends StatefulWidget {
+  final Function(Locale) setLocale;
+
+  SplashScreen({required this.setLocale});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -30,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 7), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => ChooseLanguageScreen()),
+        MaterialPageRoute(builder: (context) => ChooseLanguageScreen(setLocale: widget.setLocale)),
       );
     });
   }
@@ -87,15 +115,18 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-
 class ChooseLanguageScreen extends StatefulWidget {
+  final Function(Locale) setLocale;
+
+  ChooseLanguageScreen({required this.setLocale});
+
   @override
   _ChooseLanguageScreenState createState() => _ChooseLanguageScreenState();
 }
 
 class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
-  final List<String> languages = ["English - US", "Serbian - Latinica", "Serbian - Ćirilica"];
-  String selectedLanguage = "English - US";
+  final List<String> languages = L10n.all.map((locale) => L10n.getLanguageName(locale.toString())).toList();
+  String selectedLanguage = L10n.getLanguageName('en');
   late SharedPreferences prefs;
 
   @override
@@ -105,15 +136,18 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
   }
 
   _loadLanguage() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      selectedLanguage = prefs.getString('selectedLanguage') ?? "English - US";
-    });
+  prefs = await SharedPreferences.getInstance();
+  setState(() {
+	selectedLanguage = L10n.getLanguageName(prefs.getString('selectedLanguage') ?? 'en');
+  });
+  widget.setLocale(L10n.getLocaleFromLanguage(selectedLanguage));
   }
 
   _saveLanguage(String lang) async {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('selectedLanguage', lang);
+  prefs = await SharedPreferences.getInstance();
+  String languageCode = L10n.getLocaleFromLanguage(lang).toString();
+  prefs.setString('selectedLanguage', languageCode);
+  widget.setLocale(L10n.getLocaleFromLanguage(lang));
   }
 
   @override
@@ -127,24 +161,24 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Choose your language',
+                context.loc.choose_language,
                 style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
               DropdownButton<String>(
-                value: selectedLanguage,
-                items: languages.map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value, style: TextStyle(color: Colors.white)),
-                  );
+              value: L10n.getLocaleFromLanguage(selectedLanguage).toString(),
+              items: L10n.all.map((locale) {
+                return DropdownMenuItem<String>(
+                  value: locale.toString(),
+                  child: Text(L10n.getLanguageName(locale.toString()), style: TextStyle(color: Colors.white)),
+                );
                 }).toList(),
                 onChanged: (String? newValue) {
                   if (newValue != null) {
                     setState(() {
-                      selectedLanguage = newValue;
+                      selectedLanguage = L10n.getLanguageName(newValue);
                     });
-                    _saveLanguage(newValue);
+                    _saveLanguage(selectedLanguage);
                   }
                 },
                 dropdownColor: Color(0xFF000B48),
@@ -155,7 +189,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => IntroductionGameScreen(selectedLanguage: selectedLanguage)),
+                    MaterialPageRoute(builder: (context) => IntroductionGameScreen()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -163,7 +197,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                   foregroundColor: Colors.white,
                   minimumSize: Size(200, 50),
                 ),
-                child: Text('Continue'),
+                child: Text(context.loc.continueButton), 
               ),
             ],
           ),
@@ -174,10 +208,6 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
 }
 
 class IntroductionGameScreen extends StatelessWidget {
-  final String selectedLanguage;
-
-  IntroductionGameScreen({required this.selectedLanguage});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -188,9 +218,8 @@ class IntroductionGameScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Headline
               Text(
-                'Secrets of museum treasures',
+                context.loc.secrets_of_museum_treasures,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
@@ -199,8 +228,6 @@ class IntroductionGameScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-
-              // Square border with text
               Container(
                 width: 800,
                 height: 600,
@@ -211,25 +238,7 @@ class IntroductionGameScreen extends StatelessWidget {
                   padding: EdgeInsets.all(16),
                   child: SingleChildScrollView(
                     child: Text(
-                      'Welcome to the Secrets of Museum Treasures app!\n\n'
-                      'Our mission is to inspire and educate people of all ages about the rich cultural heritage of the Republic of Serbia through an interactive experience provided by the "Secrets of Museum Treasures" app. '
-                      'Through quizzes, puzzles, and coloring activities, we aim to enable users to explore and develop an appreciation for the treasures held within our country.\n\n'
-                      'We strive to provide an educational experience that users will remember and to enrich education through entertainment. '
-                      'Our quiz is tailored to school curricula to help students better understand and retain information from various subjects. '
-                      'Through interactive questions, we encourage learning through play. Our goal is to foster curiosity and a desire to learn among young generations.\n\n'
-                      'Our app seeks to inspire young generations to develop an interest in cultural heritage, history, art, and music. '
-                      'Through stories and information, we aim to awaken curiosity and a passion for learning.\n\n'
-                      'We are aware of the importance of collaboration with educational institutions. The "Secrets of Museum Treasures" app can be a valuable tool for teachers to enrich their lessons and motivate students to explore cultural heritage.\n\n'
-                      'This app provides an opportunity for a socially interactive experience. '
-                      'Users can share their achievements, puzzle solutions, and coloring creations with friends and family, strengthening their bonds.\n\n'
-                      'We thank the Ministry of Culture and Information of the Republic of Serbia for their support of our project. '
-                      'Their support has enabled us to develop this app and provide a high-quality educational experience for children and youth, as well as to continuously improve the app and deliver the highest-quality content to users.\n\n'
-                      'Our desire is for "Secrets of Museum Treasures" to become a means to preserve and promote our cultural heritage, inspire youth to take an interest in art and history, and contribute to enriching the cultural identity of the Republic of Serbia.\n\n'
-                      '"IGNITE YOUR MIND"\n\n'
-                      'Thank you for being a part of this adventure and supporting our mission!\n\n'
-                      'Project Manager:\n\n'
-                      'Jelena Milenković,\n'
-                      'Senior Museum Educator.',
+                      context.loc.welcome_text,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -239,11 +248,8 @@ class IntroductionGameScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-
-              // Button
               ElevatedButton(
                 onPressed: () {
-                  // Navigate to the next screen (IntroSliderScreen)
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => IntroSliderScreen()),
@@ -254,7 +260,7 @@ class IntroductionGameScreen extends StatelessWidget {
                   foregroundColor: Colors.white,
                   minimumSize: Size(200, 50),
                 ),
-                child: Text('Choose a game'),
+                child: Text(context.loc.choose_a_game),
               ),
             ],
           ),
@@ -264,7 +270,6 @@ class IntroductionGameScreen extends StatelessWidget {
   }
 }
 
-
 class IntroSliderScreen extends StatefulWidget {
   @override
   _IntroSliderScreenState createState() => _IntroSliderScreenState();
@@ -273,6 +278,34 @@ class IntroSliderScreen extends StatefulWidget {
 class _IntroSliderScreenState extends State<IntroSliderScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+
+  Widget buildSlide(Color color, String imagePath, String title, String description) {
+    return Container(
+      color: color,
+      child: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 600),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(imagePath),
+              SizedBox(height: 20),
+              Text(
+                title,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+              SizedBox(height: 10),
+              Text(
+                description,
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+              SizedBox(height: 50),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -287,10 +320,10 @@ class _IntroSliderScreenState extends State<IntroSliderScreen> {
               });
             },
             children: [
-              buildSlide(Color(0xFFFF5733), 'assets/puzzle_icon.png', 'Puzzle', 'Every piece is a key!'),
-              buildSlide(Color(0xFF3366FF), 'assets/quiz_icon.png', 'Quiz', 'Challenge the answers, unlock the knowledge.'),
-              buildSlide(Color(0xFF33FF57), 'assets/color_icon.png', 'Happy Color', 'Express yourself through colors.'),
-              buildSlide(Color(0xFF9933FF), 'assets/ic_reward.png', 'Game', 'Secrets revealed through play.'),
+              buildSlide(Color(0xFFFF5733), 'assets/puzzle_icon.png', context.loc.puzzle_title, context.loc.puzzle_description),
+              buildSlide(Color(0xFF3366FF), 'assets/quiz_icon.png', context.loc.quiz_title, context.loc.quiz_description),
+              buildSlide(Color(0xFF33FF57), 'assets/color_icon.png', context.loc.color_title, context.loc.color_description),
+              buildSlide(Color(0xFF9933FF), 'assets/ic_reward.png', context.loc.game_title, context.loc.game_description),
             ],
           ),
           Positioned(
@@ -330,7 +363,7 @@ class _IntroSliderScreenState extends State<IntroSliderScreen> {
                         backgroundColor: _currentPage == 0 ? Color(0xFFCC4400).withOpacity(0.5) : Color(0xFFCC4400),
                         foregroundColor: Colors.white,
                       ),
-                      child: Text('Previous'),
+                      child: Text(context.loc.previous),
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -353,7 +386,7 @@ class _IntroSliderScreenState extends State<IntroSliderScreen> {
                                Color(0xFF7722BB),
                         foregroundColor: Colors.white,
                       ),
-                      child: Text(_currentPage < 3 ? 'Next' : 'Get started'),
+                      child: Text(_currentPage < 3 ? context.loc.next : context.loc.get_started),
                     ),
                   ],
                 ),
@@ -362,34 +395,6 @@ class _IntroSliderScreenState extends State<IntroSliderScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget buildSlide(Color color, String imagePath, String title, String description) {
-    return Container(
-      color: color,
-      child: Center(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 600),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(imagePath),
-              SizedBox(height: 20),
-              Text(
-                title,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-              SizedBox(height: 10),
-              Text(
-                description,
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
-              SizedBox(height: 50),
-            ],
-          ),
-        ),
       ),
     );
   }
@@ -407,12 +412,12 @@ class ChooseGameScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'CHOOSE A GAME',
+                context.loc.choose_a_game,
                 style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
               GameCard(
-                title: 'Quiz',
+                title: context.loc.quiz,
                 color: Colors.orange,
                 imagePath: 'assets/quiz_icon.png',
                 onTap: () {
@@ -423,7 +428,7 @@ class ChooseGameScreen extends StatelessWidget {
                 },
               ),
               GameCard(
-                title: 'Slide Puzzle',
+                title: context.loc.slide_puzzle,
                 color: Colors.green,
                 imagePath: 'assets/puzzle_icon.png',
                 onTap: () {
@@ -434,7 +439,7 @@ class ChooseGameScreen extends StatelessWidget {
                 },
               ),
               GameCard(
-                title: 'Happy Color',
+                title: context.loc.happy_color,
                 color: Colors.blue,
                 imagePath: 'assets/color_orange_icon.png',
                 onTap: () {
