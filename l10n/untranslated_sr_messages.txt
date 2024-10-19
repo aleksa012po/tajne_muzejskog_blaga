@@ -1,0 +1,23 @@
+{
+  "sr": [
+    "choose_language",
+    "continue",
+    "secrets_of_museum_treasures",
+    "welcome_text",
+    "choose_a_game",
+    "quiz",
+    "slide_puzzle",
+    "happy_color",
+    "previous",
+    "next",
+    "get_started",
+    "puzzle_title",
+    "puzzle_description",
+    "quiz_title",
+    "quiz_description",
+    "color_title",
+    "color_description",
+    "game_title",
+    "game_description"
+  ]
+}

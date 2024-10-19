@@ -4,8 +4,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class L10n {
   static final all = [
     const Locale('en'),
-	const Locale('sr'),
-    const Locale('sr', 'Cyrl'),
+    const Locale('sr'),
+    const Locale('es'),
   ];
 
   /// Returns a user-friendly name for a given language code.
@@ -13,10 +13,10 @@ class L10n {
     switch (code) {
       case 'en':
         return 'English - US';
-      case 'sr_Cyrl':
-        return 'Serbian - Ćirilica';
-      case 'sr_Latn':
+      case 'sr':
         return 'Serbian - Latinica';
+      case 'es':
+        return 'Serbian - Ćirilica';
       default:
         return 'Unknown Language';
     }
@@ -27,10 +27,10 @@ class L10n {
     switch (language) {
       case 'English - US':
         return const Locale('en');
-      case 'Serbian - Ćirilica':
-        return const Locale('sr', 'Cyrl');
       case 'Serbian - Latinica':
         return const Locale('sr');
+      case 'Serbian - Ćirilica':
+        return const Locale('es');
       default:
         return const Locale('en'); // Default to English if not recognized
     }
@@ -40,4 +40,3 @@ class L10n {
 extension LocalizedBuildContext on BuildContext {
   AppLocalizations get loc => AppLocalizations.of(this)!;
 }
-

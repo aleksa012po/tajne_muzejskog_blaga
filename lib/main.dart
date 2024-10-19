@@ -126,7 +126,7 @@ class ChooseLanguageScreen extends StatefulWidget {
 
 class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
   final List<String> languages = L10n.all.map((locale) => L10n.getLanguageName(locale.toString())).toList();
-  String selectedLanguage = L10n.getLanguageName('en');
+  String? selectedLanguage; 
   late SharedPreferences prefs;
 
   @override
@@ -136,19 +136,51 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
   }
 
   _loadLanguage() async {
-  prefs = await SharedPreferences.getInstance();
-  setState(() {
-	selectedLanguage = L10n.getLanguageName(prefs.getString('selectedLanguage') ?? 'en');
-  });
-  widget.setLocale(L10n.getLocaleFromLanguage(selectedLanguage));
+    prefs = await SharedPreferences.getInstance();
+    String? storedLanguageCode = prefs.getString('selectedLanguage');
+
+  if (storedLanguageCode != null) {
+    // Find the language name from the stored language code
+    String languageName;
+    switch (storedLanguageCode) {
+      case 'en':
+        languageName = 'English - US';
+        break;
+      case 'sr':
+        languageName = 'Serbian - Latinica';
+        break;
+      case 'sr_Cyrl':
+        languageName = 'Serbian - Ćirilica';
+        break;
+      default:
+        languageName = 'English - US'; // Default to English
+    }
+
+    selectedLanguage = languageName;
+    Locale storedLocale = L10n.getLocaleFromLanguage(languageName);
+    widget.setLocale(storedLocale);
+  } else {
+    selectedLanguage = 'English - US'; // Default to English if no stored preference
+    widget.setLocale(const Locale('en')); // Set default locale to English
+  }
+  setState(() {});
   }
 
+
   _saveLanguage(String lang) async {
-  prefs = await SharedPreferences.getInstance();
-  String languageCode = L10n.getLocaleFromLanguage(lang).toString();
-  prefs.setString('selectedLanguage', languageCode);
-  widget.setLocale(L10n.getLocaleFromLanguage(lang));
+   prefs = await SharedPreferences.getInstance();
+   Locale localeToSave = L10n.getLocaleFromLanguage(lang);
+   String languageCode = localeToSave.toString(); // This will be 'en','sr', or 'sr_Cyrl'
+  if (localeToSave.scriptCode != null) {
+    languageCode = '${localeToSave.languageCode}_${localeToSave.scriptCode}'; // Handle 'sr_Cyrl'
   }
+   prefs.setString('selectedLanguage', languageCode);
+   widget.setLocale(localeToSave);
+   setState(() {
+    selectedLanguage = lang;
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -166,19 +198,16 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
               ),
               SizedBox(height: 20),
               DropdownButton<String>(
-              value: L10n.getLocaleFromLanguage(selectedLanguage).toString(),
-              items: L10n.all.map((locale) {
-                return DropdownMenuItem<String>(
-                  value: locale.toString(),
-                  child: Text(L10n.getLanguageName(locale.toString()), style: TextStyle(color: Colors.white)),
-                );
+                value: selectedLanguage, 
+                items: languages.map((language) {
+                  return DropdownMenuItem<String>(
+                    value: language,
+                    child: Text(language, style: TextStyle(color: Colors.white)),
+                  );
                 }).toList(),
                 onChanged: (String? newValue) {
-                  if (newValue != null) {
-                    setState(() {
-                      selectedLanguage = L10n.getLanguageName(newValue);
-                    });
-                    _saveLanguage(selectedLanguage);
+                  if (newValue!= null) {
+                    _saveLanguage(newValue); 
                   }
                 },
                 dropdownColor: Color(0xFF000B48),
