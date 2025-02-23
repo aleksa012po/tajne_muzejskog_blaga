@@ -1,4 +1,4 @@
-**BrainTrio - Museum Interactive App**
+# BrainTrio - Museum Interactive App
 
 **BrainTrio** is a Flutter-based interactive application designed for museums to engage visitors with fun and educational games. The app includes multiple games like quizzes, slide puzzles, and coloring activities, all themed around museum treasures. It supports multiple languages and provides a seamless user experience.
 
@@ -20,7 +20,7 @@
 
 **Localization**: All text is localized for a better user experience.
 
-**Getting Started**
+# Getting Started
 
 Prerequisites
 
@@ -82,7 +82,7 @@ flutter gen-l10n
 **3. Update supported locales:**
 Modify the L10n.all list in l10n.dart to include new locales.
 
-#Building the App
+# Building the App
 
 **Android**
 
@@ -102,8 +102,8 @@ open ios/Runner.xcworkspace
 
 **3. Archive and distribute via Xcode.**
 
-**LICENSE**
-This project is licensed under the MIT License. See the #LICENSE file for details.
+# LICENSE
+This project is licensed under the MIT License. See the **LICENSE** file for details.
 
 **Acknowledgments**
 
@@ -111,7 +111,7 @@ This project is licensed under the MIT License. See the #LICENSE file for detail
 
 **Flutter Community:**: For the amazing tools and libraries that made this project possible.
 
-**Contact**
+ #Contact
 
 For any questions or feedback, feel free to reach out:
 
