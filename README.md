@@ -28,18 +28,18 @@ Prerequisites
 
 # Dart: Flutter uses Dart as its programming language. Ensure you have Dart installed alongside Flutter.
 
-# IDE: Use #Android Studio or #VS #Code with the Flutter and Dart plugins installed.
+# IDE: Use **Android Studio** or **VS Code** with the Flutter and Dart plugins installed.
 
 # Installation
 
-#1. #Clone #the #repository:
+**1. Clone the repository:**
 git clone https://github.com/your-username/brain-trio-museum-app.git
 cd brain-trio-museum-app
 
-#2. #Install #dependencies:
+**2. Install dependencies:**
 flutter pub get
 
-#3. #Run #the #app:
+**3. Run the app:**
 flutter run
 
 # Project Structure
@@ -69,54 +69,54 @@ brain-trio-museum-app/
 
 The app supports multiple languages. To add or modify translations:
 
-#1. #Add #new #translations:
+**1. Add new translations:**
 
 Navigate to the l10n/ directory.
 Add or modify the .arb files (e.g., app_en.arb, app_sr.arb, app_sr_Cyrl.arb).
 
-#2. #Generate #localization #files:
+**2. Generate localization files:**
    
 Run the following command to generate the localization files:
 flutter gen-l10n
 
-#3. #Update #supported #locales:
+**3. Update supported locales:**
 Modify the L10n.all list in l10n.dart to include new locales.
 
 #Building the App
 
-#Android
+**Android**
 
-#1. #Generate #a #release #APK:
+**1. Generate a release APK:**
 flutter build apk --release
 
-#2. #Generate #an #app #bundle:
+**2. Generate an app bundle:**
 flutter build appbundle --release
 
-#iOS
+**iOS**
 
-#1. #Build #for #iOS:
+**1. Build for iOS:**
 flutter build ios --release
 
-#2. #Open #the #project #in #Xcode:
+**2. Open the project in Xcode:**
 open ios/Runner.xcworkspace
 
-#3. #Archive #and #distribute #via #Xcode.
+**3. Archive and distribute via Xcode.**
 
-# License
+**LICENSE**
 This project is licensed under the MIT License. See the #LICENSE file for details.
 
-#Acknowledgments
+**Acknowledgments**
 
-#Museum #Partners: Thanks to the museum for providing the content and inspiration.
+**Museum Partners:**: Thanks to the museum for providing the content and inspiration.
 
-#Flutter #Community: For the amazing tools and libraries that made this project possible.
+**Flutter Community:**: For the amazing tools and libraries that made this project possible.
 
-#Contact
+**Contact**
 
 For any questions or feedback, feel free to reach out:
 
-Mail: aleksa012po@gmail.com
+Mail: **aleksa012po@gmail.com**
 
-GitHub: aleksa012po
+GitHub: **aleksa012po**
 
 This #README.md provides a comprehensive guide for users and contributors. Make sure to replace placeholders like your-username, your-email@example.com, and add actual screenshots for a more polished look. Good luck with your project! 🚀
