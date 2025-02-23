@@ -47,23 +47,23 @@ flutter run
 Here’s an overview of the project structure:
 
 brain-trio-museum-app/
-├── lib/
-│   ├── main.dart              # Entry point of the application
-│   ├── l10n.dart              # Localization configuration
-│   ├── screens/               # Contains all the screens of the app
-│   │   ├── splash_screen.dart
-│   │   ├── choose_language_screen.dart
-│   │   ├── introduction_game_screen.dart
-│   │   ├── intro_slider_screen.dart
-│   │   ├── choose_game_screen.dart
-│   │   ├── quiz_screen.dart
-│   │   ├── slide_puzzle_screen.dart
-│   │   └── happy_color_screen.dart
-│   └── widgets/               # Reusable widgets
-│       └── game_card.dart
-├── assets/                    # Contains images, icons, and other static files
-├── l10n/                      # Localization files
-└── pubspec.yaml               # Project dependencies and metadata
+|-- lib/
+|   |-- main.dart              **Entry point of the application**
+|   |-- l10n.dart              **Localization configuration**
+|   |-- screens/               **Contains all the screens of the app**
+|   |   |-- splash_screen.dart
+|   |   |-- choose_language_screen.dart
+|   |   |-- introduction_game_screen.dart
+|   |   |-- intro_slider_screen.dart
+|   |   |-- choose_game_screen.dart
+|   |   |-- quiz_screen.dart
+|   |   |-- slide_puzzle_screen.dart
+|   |   |-- happy_color_screen.dart
+|   |-- widgets/               **Reusable widgets**
+|       |-- game_card.dart
+|-- assets/                    **Contains images, icons, and other static files**
+|-- l10n/                      **Localization files**
+|-- pubspec.yaml               **Project dependencies and metadata**
 
 # Localization
 
