@@ -1,36 +1,36 @@
-# BrainTrio - Museum Interactive App
+**BrainTrio - Museum Interactive App**
 
-# BrainTrio is a Flutter-based interactive application designed for museums to engage visitors with fun and educational games. The app includes multiple games like quizzes, slide puzzles, and coloring activities, all themed around museum treasures. It supports multiple languages and provides a seamless user experience.
+**BrainTrio** is a Flutter-based interactive application designed for museums to engage visitors with fun and educational games. The app includes multiple games like quizzes, slide puzzles, and coloring activities, all themed around museum treasures. It supports multiple languages and provides a seamless user experience.
 
-# Features
+**Features**
 
-# Multi-language Support: Choose between English, Serbian (Latin), and Serbian (Cyrillic).
+**Multi-language Support**: Choose between English, Serbian (Latin), and Serbian (Cyrillic).
 
-# Interactive Games:
+**Interactive Games**:
 
-# Quiz: Test your knowledge about museum artifacts.
+**Quiz**: Test your knowledge about museum artifacts.
 
-# Slide Puzzle: Solve puzzles featuring museum treasures.
+**Slide Puzzle**: Solve puzzles featuring museum treasures.
 
-# Happy Color: Color museum-related images and learn about their history.
+**Happy Color**: Color museum-related images and learn about their history.
 
-# Splash Screen: A visually appealing introduction to the app.
+**Splash Screen**: A visually appealing introduction to the app.
 
-# Language Selection: Users can select their preferred language at the start.
+**Language Selection**: Users can select their preferred language at the start.
 
-# Localization: All text is localized for a better user experience.
+**Localization**: All text is localized for a better user experience.
 
-# Getting Started
+**Getting Started**
 
 Prerequisites
 
-# Flutter SDK: Make sure you have Flutter installed on your machine. If not, follow the official installation guide.
+**Flutter SDK**: Make sure you have Flutter installed on your machine. If not, follow the official installation guide.
 
-# Dart: Flutter uses Dart as its programming language. Ensure you have Dart installed alongside Flutter.
+**Dart**: Flutter uses Dart as its programming language. Ensure you have Dart installed alongside Flutter.
 
-# IDE: Use **Android Studio** or **VS Code** with the Flutter and Dart plugins installed.
+**IDE**: Use **Android Studio** or **VS Code** with the Flutter and Dart plugins installed.
 
-# Installation
+**Installation**
 
 **1. Clone the repository:**
 git clone https://github.com/your-username/brain-trio-museum-app.git
